@@ -1,0 +1,19 @@
+{
+  "name": "web-scraper-toolkit",
+  "version": "1.0.0",
+  "description": "Universal web scraper API — extract structured data from any website. Headlines, prices, links, tables, and custom selectors.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "mcp": "node src/mcp-server.js"
+  },
+  "keywords": ["web-scraper", "api", "data-extraction", "html-parser", "mcp"],
+  "author": "lazymac2x",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.0",
+    "cors": "^2.8.5",
+    "cheerio": "^1.0.0"
+  }
+}
