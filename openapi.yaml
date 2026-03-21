@@ -1,0 +1,90 @@
+openapi: 3.0.3
+info:
+  title: Web Scraper Toolkit
+  description: |
+    Universal web scraping API — extract structured data from any website.
+
+    Modes: metadata, links, headlines, images, tables, text, custom CSS selectors.
+    Batch scraping up to 10 URLs at once.
+
+    No API key or browser required. Fast HTML parsing with CSS selector support.
+  version: 1.0.0
+  contact:
+    name: lazymac2x
+    url: https://github.com/lazymac2x/web-scraper-toolkit
+servers:
+  - url: https://people-bowling-called-hint.trycloudflare.com
+paths:
+  /api/v1/scrape:
+    get:
+      operationId: scrapeGet
+      summary: Scrape a website (GET)
+      description: Extract structured data from any URL. Choose a mode to control what data is returned.
+      parameters:
+        - name: url
+          in: query
+          required: true
+          schema:
+            type: string
+          description: URL to scrape
+        - name: mode
+          in: query
+          schema:
+            type: string
+            enum: [full, metadata, links, headlines, images, tables, text, custom]
+            default: full
+          description: Extraction mode
+        - name: selector
+          in: query
+          schema:
+            type: string
+          description: CSS selector (custom mode only)
+      responses:
+        '200':
+          description: Scraped data
+    post:
+      operationId: scrapePost
+      summary: Scrape a website (POST)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [url]
+              properties:
+                url:
+                  type: string
+                mode:
+                  type: string
+                  enum: [full, metadata, links, headlines, images, tables, text, custom]
+                  default: full
+                selector:
+                  type: string
+      responses:
+        '200':
+          description: Scraped data
+  /api/v1/batch:
+    post:
+      operationId: batchScrape
+      summary: Batch scrape multiple URLs
+      description: Scrape up to 10 URLs at once. Returns metadata or selected mode for each URL.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [urls]
+              properties:
+                urls:
+                  type: array
+                  items:
+                    type: string
+                  maxItems: 10
+                mode:
+                  type: string
+                  default: metadata
+      responses:
+        '200':
+          description: Batch results
