@@ -95,3 +95,5 @@ Tools: `scrape_website`, `extract_text`, `batch_scrape`
 ## License
 
 MIT
+
+<sub>💡 Host your own stack? <a href="https://m.do.co/c/c8c07a9d3273">Get $200 DigitalOcean credit</a> via lazymac referral link.</sub>
